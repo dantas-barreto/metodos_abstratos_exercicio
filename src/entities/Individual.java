@@ -29,17 +29,14 @@ public class Individual extends TaxPayer {
 	public double tax() {
 		double taxValue = 0.0;
 		if (getIncome() < 20000.0) {
-			if (healthExpenditure != 0.0) {
-				return taxValue = (getIncome() * 0.15) - (healthExpenditure * 0.5);
-			} else {
-				return taxValue = getIncome() * 0.15;
-			}
+			taxValue = getIncome() * 0.15;
 		} else {
-			if (healthExpenditure != 0.0) {
-				return taxValue = (getIncome() * 0.25) - (healthExpenditure * 0.5);
-			} else {
-				return taxValue = getIncome() * 0.25;
-			}
+			taxValue = getIncome() * 0.25;
 		}
+		taxValue = taxValue - getHealthExpenditure() * 0.5;
+		if (taxValue < 0.0) {
+			taxValue = 0.0;
+		}
+		return taxValue;
 	}
 }
